@@ -6,18 +6,10 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Manohar-Gurujapu/spring-mysql-docker-image']])
+                sh 'mvn clean install'
             }
         }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
-        }
-    }
-}
+      }
+   }
+

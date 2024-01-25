@@ -1,0 +1,21 @@
+name: SonarQube Integration
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sonarqube:
+    name: SonarQube Integration
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: http://user2.dev.ocp.lab:9000/projects
+ # example URL (https://sq.bswlog.co.in/)
